@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/eclipse"/>
+	<classpathentry kind="lib" path="bd/mysql-connector-java-5.0.4-bin.jar"/>
+	<classpathentry kind="lib" path="gson/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="htmlEditor/jtidy-8.0.jar"/>
+	<classpathentry kind="lib" path="htmlEditor/novaworx-syntax-0.0.7.jar"/>
+	<classpathentry kind="lib" path="htmlEditor/sam.jar"/>
+	<classpathentry kind="lib" path="htmlEditor/SHEF.jar"/>
+	<classpathentry kind="lib" path="mail/mailapi.jar"/>
+	<classpathentry kind="lib" path="mail/smtp.jar"/>
+	<classpathentry kind="lib" path="mail/log4j-1.2.15.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

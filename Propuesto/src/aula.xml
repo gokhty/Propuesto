@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<clientes>
+    <clientes>
+        <correo>Jorge@gmail.com</correo>
+        <idCliente>12</idCliente>
+        <nombre>Jorge Jacinto Gutarra</nombre>
+    </clientes>
+    <clientes>
+        <correo>Pedro@gmail.com</correo>
+        <idCliente>13</idCliente>
+        <nombre>Pedro Jacinto Gutarra</nombre>
+    </clientes>
+    <clientes>
+        <correo>Lucia@gmail.com</correo>
+        <idCliente>14</idCliente>
+        <nombre>Lucia Jacinto Gutarra</nombre>
+    </clientes>
+</clientes>
