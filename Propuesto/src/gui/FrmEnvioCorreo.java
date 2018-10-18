@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ModelCliente;
 import net.atlanticbb.tantlinger.shef.HTMLEditorPane;
 import entidad.Cliente;
+import mail.ModelMail;
 import util.PDF;
 @SuppressWarnings("serial")
 public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListener {
@@ -40,6 +41,7 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListe
 	private JButton button_1;
 	private JButton button_2;
 	private JButton btnExp;
+	HTMLEditorPane editorPane;
 	/**
 	 * Launch the application.
 	 */
@@ -146,7 +148,7 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListe
 		button.setBounds(593, 296, 35, 23);
 		contentPane.add(button);
 		
-		HTMLEditorPane editorPane = new HTMLEditorPane();
+		editorPane = new HTMLEditorPane();
 		editorPane.setBackground(Color.WHITE);
 		editorPane.setBounds(10, 331, 907, 195);
 		contentPane.add(editorPane);
@@ -224,10 +226,36 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListe
 		lista(nlst);
 	}
 	protected void do_btnEnviarMail_actionPerformed(ActionEvent arg0) {
+		ModelMail modelMail = new ModelMail();
+		
+		String to = "cibertron12345@gmail.com";
+		String filePath = lblFile.getText();
+		String subject = "nada";
+	
+		String username = "cibertron12345@gmail.com";
+		String password = new String("Wum2zxm5");
+
+		String texto = editorPane.getText().trim();
+		
+		String strResultado = modelMail.pruebaMail(username, password, subject, to, texto, filePath);
+		
+		
+		System.out.println(strResultado);
 	}
 	protected void do_button_actionPerformed(ActionEvent arg0) {
+		JFileChooser fc = new JFileChooser();
+		fc.setMultiSelectionEnabled(true);
+		int returnVal = fc.showDialog(this, "Seleccione file");
 		
-		lblFile.setText(s());
+		if(returnVal == JFileChooser.APPROVE_OPTION){
+			  File[] file = fc.getSelectedFiles();
+			  String rutas = "";
+			  for (int i = 0; i < file.length; i++) {
+				  rutas += file[i].getAbsolutePath();
+				  if(i != file.length-1) rutas+=",";
+			  }
+			  lblFile.setText(rutas);
+		}
 	}
 	protected void do_button_1_actionPerformed(ActionEvent arg0) {
 		xml = s();
