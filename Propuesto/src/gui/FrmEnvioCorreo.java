@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import model.ModelCliente;
 import net.atlanticbb.tantlinger.shef.HTMLEditorPane;
 import entidad.Cliente;
-
+import util.PDF;
 @SuppressWarnings("serial")
 public class FrmEnvioCorreo extends JFrame implements ActionListener {
 
@@ -206,6 +206,8 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 	protected void do_btnEnviarMail_actionPerformed(ActionEvent arg0) {
 	}
 	protected void do_button_actionPerformed(ActionEvent arg0) {
+		ModelCliente m = new ModelCliente();
+		PDF.crear(m.listaCliente(), "F:/aula/hola.pdf");
 		lblFile.setText(s());
 	}
 	protected void do_button_1_actionPerformed(ActionEvent arg0) {
