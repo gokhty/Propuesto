@@ -37,11 +37,13 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 	private JLabel lblFile;
 	private JButton button_1;
 	private JButton button_2;
-
+	private JButton btnExp;
 	/**
 	 * Launch the application.
 	 */
 	private String json,xml;
+	private List<Cliente>nlst;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,6 +89,11 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 84, 610, 167);
 		contentPane.add(scrollPane);
+		
+		btnExp = new JButton("Crear PDF");
+		btnExp.addActionListener(this);
+		btnExp.setBounds(10, 269, 254, 23);
+		contentPane.add(btnExp);
 
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -174,6 +181,9 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 		if (arg0.getSource() == btnFiltrar) {
 			do_btnFiltrar_actionPerformed(arg0);
 		}
+		if (arg0.getSource() == btnExp) {
+			do_btnExp_actionPerformed(arg0);
+		}
 	}
 	void lista(List<Cliente> data){
 		
@@ -188,26 +198,33 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 			dtm.addRow(fila);
 		}
 	}
+	protected void do_btnExp_actionPerformed(ActionEvent arg0) {
+		ModelCliente m = new ModelCliente();
+		String s =s().replace("\\", "/");
+		PDF.crear(nlst, s);
+	}
 	protected void do_btnFiltrar_actionPerformed(ActionEvent arg0) {
 		ModelCliente m = new ModelCliente();
 		lista(m.listaCliente());
+		nlst = m.listaCliente();
 	}
 	protected void do_btnCargaClienteXml_actionPerformed(ActionEvent arg0) {
 		
 		String url = xml;
 		ModelCliente m = new ModelCliente();
 		lista(m.listaCliente2(url));
+		nlst = m.listaCliente2(url);
 	}
 	protected void do_btnCargaClienteJson_actionPerformed(ActionEvent arg0) {
 		String url = json;
 		ModelCliente m = new ModelCliente();
 		lista(m.listaCliente1(url));
+		nlst = m.listaCliente1(url);
 	}
 	protected void do_btnEnviarMail_actionPerformed(ActionEvent arg0) {
 	}
 	protected void do_button_actionPerformed(ActionEvent arg0) {
-		ModelCliente m = new ModelCliente();
-		PDF.crear(m.listaCliente(), "F:/aula/hola.pdf");
+		
 		lblFile.setText(s());
 	}
 	protected void do_button_1_actionPerformed(ActionEvent arg0) {
@@ -227,5 +244,8 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 			  u = file.getAbsolutePath();
 		}
 		return u;
+	}
+	public void selectFilas(){
+		
 	}
 }

@@ -15,7 +15,7 @@ public abstract class PDF {
 		try {
 		    Document documento = new Document();
 		    try {
-		        PdfWriter.getInstance(documento, new FileOutputStream("F:/aula/hola.pdf"));
+		        PdfWriter.getInstance(documento, new FileOutputStream(guardar_en));
 		       
 		    } catch (FileNotFoundException fileNotFoundException) {
 		        System.out.println("No such file was found to generate the PDF "
