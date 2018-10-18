@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.List;
 
@@ -25,7 +27,7 @@ import net.atlanticbb.tantlinger.shef.HTMLEditorPane;
 import entidad.Cliente;
 import util.PDF;
 @SuppressWarnings("serial")
-public class FrmEnvioCorreo extends JFrame implements ActionListener {
+public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListener {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -96,6 +98,7 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 		contentPane.add(btnExp);
 
 		table = new JTable();
+		table.addMouseListener(this);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 
@@ -199,27 +202,26 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnExp_actionPerformed(ActionEvent arg0) {
-		ModelCliente m = new ModelCliente();
 		String s =s().replace("\\", "/");
 		PDF.crear(nlst, s);
 	}
 	protected void do_btnFiltrar_actionPerformed(ActionEvent arg0) {
 		ModelCliente m = new ModelCliente();
-		lista(m.listaCliente());
 		nlst = m.listaCliente();
+		lista(nlst);
 	}
 	protected void do_btnCargaClienteXml_actionPerformed(ActionEvent arg0) {
 		
 		String url = xml;
 		ModelCliente m = new ModelCliente();
-		lista(m.listaCliente2(url));
 		nlst = m.listaCliente2(url);
+		lista(nlst);
 	}
 	protected void do_btnCargaClienteJson_actionPerformed(ActionEvent arg0) {
 		String url = json;
 		ModelCliente m = new ModelCliente();
-		lista(m.listaCliente1(url));
 		nlst = m.listaCliente1(url);
+		lista(nlst);
 	}
 	protected void do_btnEnviarMail_actionPerformed(ActionEvent arg0) {
 	}
@@ -248,4 +250,52 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener {
 	public void selectFilas(){
 		
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int r = table.getSelectedRow();
+		
+		int cod = Integer.parseInt(table.getValueAt(r, 1).toString());
+		String nom = table.getValueAt(r, 2).toString();
+		String email = table.getValueAt(r, 3).toString();
+
+		boolean booc = (boolean) table.getValueAt(r, 0);
+		System.out.println(booc+" "+cod);
+	
+			if(booc){
+				nlst.add(new Cliente(cod, nom, email));
+				
+			}else{
+				for(int i = 0; i < nlst.size(); i++){
+					if(nlst.get(i).getIdCliente() == cod){
+						nlst.remove(i);
+					}
+				}
+			}
+		}	
 }
