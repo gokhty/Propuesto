@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -228,12 +229,12 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListe
 	protected void do_btnEnviarMail_actionPerformed(ActionEvent arg0) {
 		ModelMail modelMail = new ModelMail();
 		
-		String to = "cibertron12345@gmail.com";
+		String to = JOptionPane.showInputDialog("Destinatario");
 		String filePath = lblFile.getText();
-		String subject = "nada";
+		String subject = JOptionPane.showInputDialog("Asunto");
 	
-		String username = "cibertron12345@gmail.com";
-		String password = new String("Wum2zxm5");
+		String username = JOptionPane.showInputDialog("Remitente");
+		String password = new String(JOptionPane.showInputDialog("Contraseña"));
 
 		String texto = editorPane.getText().trim();
 		
@@ -266,7 +267,7 @@ public class FrmEnvioCorreo extends JFrame implements ActionListener, MouseListe
 	String s(){
 		String u = null;
 		JFileChooser fc = new JFileChooser();
-		int returnVal = fc.showDialog(this, "Seleccione file");
+		int returnVal = fc.showDialog(this, "Guardar archivo");
 		
 		if(returnVal == JFileChooser.APPROVE_OPTION){
 			  File file = fc.getSelectedFile();
